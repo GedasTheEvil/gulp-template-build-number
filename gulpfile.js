@@ -9,12 +9,23 @@ var gulp = require('gulp'),
     replaceWith = ['version=', buildNumber, '&gulpBuild=1'].join(''),
     path = require('path');
 
-gulp.task('templateBuildNumber', function () {
+/**
+ * The base function for a gulp task that replaces the build versions in templates
+ *
+ * @param {Array} templateList
+ * @param {string} base
+ */
+function templateBuilderGenericStart(templateList, base) {
     "use strict";
     templateList.forEach(function (template) {
-        gulp.src([template], {"base": './'}).
+        gulp.src([template], {"base": base}).
             pipe(replace(pattern, replaceWith)).
             pipe(gulp.dest(path.dirname(template)));
     });
+}
+
+gulp.task('templateBuildNumber', function () {
+    "use strict";
+    templateBuilderGenericStart(templateList, './');
 });
 
