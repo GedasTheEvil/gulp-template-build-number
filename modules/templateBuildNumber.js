@@ -6,7 +6,7 @@ module.exports = (function () {
     var gulp = require('gulp'),
         replace = require('gulp-replace'),
         buildNumber = (new Date()).getTime(),
-        pattern = new RegExp('version=([^&]{0,32})&gulpBuild=1', 'gi'),
+        pattern = new RegExp('version=([^&]{0,32})&(amp;)?gulpBuild=1', 'gi'),
         replaceWith = ['version=', buildNumber, '&amp;gulpBuild=1'].join(''),
         path = require('path');
 
